@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>能一键备份的快捷方式</title>
+      <link href="/%E6%8A%80%E6%9C%AF/%E8%83%BD%E4%B8%80%E9%94%AE%E5%A4%87%E4%BB%BD%E7%9A%84%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/"/>
+      <url>/%E6%8A%80%E6%9C%AF/%E8%83%BD%E4%B8%80%E9%94%AE%E5%A4%87%E4%BB%BD%E7%9A%84%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一键保存"><a href="#一键保存" class="headerlink" title="一键保存"></a>一键保存</h1><p>简单描述一下就是，在桌面生成一个bash命令的快捷方式，当拖动文件在这个快捷方式上打开时，就会自动将这个文件保存到你本地的MongoDB中。</p><p>我搞来就是想写东西的时候，保存顺便备份。。。</p><hr><h2 id="首先安装好MongoDB"><a href="#首先安装好MongoDB" class="headerlink" title="首先安装好MongoDB"></a>首先安装好MongoDB</h2><p>不懂直接菜鸟教程：<a href="https://www.runoob.com/mongodb/mongodb-window-install.html">Windows 平台安装 MongoDB</a></p><h2 id="然后装好npm"><a href="#然后装好npm" class="headerlink" title="然后装好npm"></a>然后装好npm</h2><p>这个使用node.js跑的</p><h2 id="接着搞个文件夹"><a href="#接着搞个文件夹" class="headerlink" title="接着搞个文件夹"></a>接着搞个文件夹</h2><p>创建两个文件，分别是： save.js 和 savefile.bat</p><p>然后上代码：</p><p>没有 <code>mongodb</code> 和 <code>node-cmd</code> 这两个库的先npm装一下嘛，不能懒哦~<br><del>（虽然我搞这玩意就是因为懒……）</del></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// save.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; MongoClient &#125; = <span class="built_in">require</span>(<span class="string">&#x27;mongodb&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> cmd = <span class="built_in">require</span>(<span class="string">&quot;node-cmd&quot;</span>)</span><br><span class="line"><span class="comment">// or as an es module:</span></span><br><span class="line"><span class="comment">// import &#123; MongoClient &#125; from &#x27;mongodb&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Connection URL</span></span><br><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;mongodb://localhost:27017&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> MongoClient(url);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Database Name</span></span><br><span class="line"><span class="keyword">const</span> dbName = <span class="string">&#x27;file&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">path</span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Use connect method to connect to the server</span></span><br><span class="line">    <span class="keyword">await</span> client.connect();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Connected successfully to server&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> db = client.db(dbName);</span><br><span class="line">    <span class="keyword">const</span> collection = db.collection(<span class="string">&#x27;file&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    path = path.replace(<span class="regexp">/\\/g</span>, <span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(path)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 分割路径 + 文件名</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getDirName</span>(<span class="params">path</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> arr = path.split(<span class="string">&quot;/&quot;</span>)</span><br><span class="line">        <span class="keyword">var</span> filename = arr[arr.length -<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">var</span> fileDir = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length-<span class="number">1</span>; i++) &#123;</span><br><span class="line">            fileDir += arr[i] + <span class="string">&quot;/&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> [fileDir,filename]</span><br><span class="line">    &#125;</span><br><span class="line">    [fileDir,filename] = getDirName(path);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取文件大小</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getSize</span>(<span class="params">path</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> size;</span><br><span class="line">        <span class="keyword">var</span> fileMsg = fs.statSync(path);</span><br><span class="line">        <span class="keyword">if</span>(fileMsg.size &lt; <span class="number">1024</span>)                     size = fileMsg.size + <span class="string">&#x27;b&#x27;</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(fileMsg.size &lt; <span class="number">1024</span> * <span class="number">1024</span>)         size = (fileMsg.size/<span class="number">1024</span>).toFixed(<span class="number">2</span>) + <span class="string">&#x27;kb&#x27;</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(fileMsg.size &lt; <span class="number">1024</span> * <span class="number">1024</span> * <span class="number">1024</span>)  size = (fileMsg.size/<span class="number">1024</span>/<span class="number">1024</span>).toFixed(<span class="number">2</span>) + <span class="string">&#x27;MB&#x27;</span></span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> size = getSize(path)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取文件数据</span></span><br><span class="line">    <span class="keyword">var</span> data = fs.readFileSync(path)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取当前时间</span></span><br><span class="line">    <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 插入数据</span></span><br><span class="line">    <span class="keyword">var</span> insertResult = <span class="keyword">await</span> collection.insert(</span><br><span class="line">        &#123; </span><br><span class="line">            path,</span><br><span class="line">            fileDir,</span><br><span class="line">            filename,  </span><br><span class="line">            data,</span><br><span class="line">            size,</span><br><span class="line">            time</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    <span class="built_in">console</span>.log(insertResult)</span><br><span class="line">    fs.appendFileSync(<span class="string">&quot;log&quot;</span>, time + <span class="string">&quot;\t:\t&quot;</span> + path + <span class="string">&quot;\t&quot;</span> + <span class="string">&quot;insertedCount:&quot;</span> + insertResult.insertedCount + <span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;done.&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">ms</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span>=&gt;</span><span class="built_in">setTimeout</span>(resolve, ms))</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">pause</span>(<span class="params">ms</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">await</span> sleep(ms)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> args = process.argv.splice(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">var</span> path = args[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">console</span>.log(path)</span><br><span class="line"></span><br><span class="line">main(path)</span><br><span class="line">    .then(<span class="built_in">console</span>.log)</span><br><span class="line">    .catch(<span class="built_in">console</span>.error)</span><br><span class="line">    .finally(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        client.close()</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;MongoDB Server (MongoDB) 服务正在停止 .&quot;</span>)</span><br><span class="line">        cmd.run(<span class="string">&quot;net stop mongodb&quot;</span>)</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&quot;MongoDB Server (MongoDB) 服务已成功停止。&quot;</span>)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;\nfinish\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">pause(<span class="number">2000</span>)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># savefile.bat</span></span><br><span class="line"></span><br><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> %1<span class="comment"># 打印这个文件的路径</span></span><br><span class="line">net start mongodb<span class="comment"># 启动MongoDB服务</span></span><br><span class="line">npm start %1<span class="comment"># 启动上面的save.js</span></span><br><span class="line"></span><br><span class="line">pause</span><br></pre></td></tr></table></figure><p>然后改一下这个<code>package.json</code> ，加个 <code>scripts</code> 上去，和bat中的start一起就能跑起来了。</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># package.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;mongodb&quot;</span>: <span class="string">&quot;^4.3.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;node-cmd&quot;</span>: <span class="string">&quot;^5.0.0&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;main&quot;</span>: <span class="string">&quot;save.js&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;start&quot;</span>: <span class="string">&quot;node save.js&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><h2 id="然后，然后就没有然后了…"><a href="#然后，然后就没有然后了…" class="headerlink" title="然后，然后就没有然后了…"></a>然后，然后就没有然后了…</h2><p>那倒也不是，然后就是把 <code>savefile.bat</code> 创建桌面快捷方式，然后就可以把你的word文档呀，markdown呀，乱七八糟的东西，拖到桌面的快捷方式上去 松手，备份完毕，</p><p>至于怎么看嘛。。。</p><p>搞个cmd</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mongo</span><br><span class="line">$ use file</span><br><span class="line">$ db.file.find(&#123;&#125;,&#123;data:0&#125;)<span class="comment"># 不看data，因为都是二进制数据</span></span><br><span class="line">$ db.file.find(&#123;&#125;,&#123;data:0&#125;).pretty()<span class="comment"># 格式化输出</span></span><br></pre></td></tr></table></figure><p>记录了文件名，大小，保存时间，还有保存时文件所在的路径。</p><p>而且还可以重复保存，也不会覆盖掉，时间不同嘛 就可以区分版本，所以我就搞来当备份用了</p><hr><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>还是再唠嗑一下吧，</p><p>用这个保存过之后，会在这个文件夹下生成一个log，你就能看到自己曾今保存了什么了。</p><p>还有就是，现在这玩意是二进制存储的，还可以搞一下压缩，读完文件之后 压缩完再丢进去，虽然说是MongoDB 存个几G几T都还行，但毕竟存在本地嘛…</p><p><del>但别人删你文件的时候，清空回收站，但其实还可以恢复，就很nice!</del></p><p><del>写论文，写文档的时候就很棒，还可以存点***那些东西咳咳… 隐藏文件夹什么的有什么用嘛，光明正大的白给</del></p><p>有时间再弄个恢复文档的客户端 <del>（什么叫在线点播呀，后仰.jpg）</del></p><hr><h2 id="再说个坑吧"><a href="#再说个坑吧" class="headerlink" title="再说个坑吧"></a>再说个坑吧</h2><p>就是，.bat 中 <code>%1</code> 代表传进去的第一个参数嘛，这个挺好理解的</p><p>然后就是跑了 <code> npm start %1</code>    这个时候，后面的都不生效了，跑完就直接闪退了…就很懵</p><p>本来我是想这样的：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">net start mongodb<span class="comment"># 启动服务</span></span><br><span class="line">npm start %1<span class="comment"># 跑、存文件</span></span><br><span class="line">net stop mongodb<span class="comment"># 停止服务</span></span><br><span class="line">pause<span class="comment"># 任意键退出</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>但结果就是后面两步不执行，直接闪退…</p><p>如果是用start 启动node的话，他就相当于再新建了一个cmd来跑，跑完了就不能退了，就会留了个黑框得自己关，而且这可以算是一个异步过程，要是没存完就把服务关了，就很。。。</p><p>总之就不是我所想的那样。。。</p><p>所以我就把后面两步写在node里面了，用里面的 <code>node-cmd</code> 来跑算了 </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> 小玩意 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mongodb </tag>
+            
+            <tag> bash </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Ubuntu20.04下，搭建hexo个人博客</title>
       <link href="/%E6%8A%80%E6%9C%AF/Ubuntu20-04%E4%B8%8B%EF%BC%8C%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
       <url>/%E6%8A%80%E6%9C%AF/Ubuntu20-04%E4%B8%8B%EF%BC%8C%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
@@ -55,11 +84,11 @@
             
             <tag> 大型数据库 </tag>
             
-            <tag> Hadoop </tag>
-            
             <tag> 虚拟机 </tag>
             
             <tag> Linux </tag>
+            
+            <tag> Hadoop </tag>
             
             <tag> Kafka </tag>
             
@@ -88,11 +117,11 @@
             
             <tag> 大型数据库 </tag>
             
-            <tag> Hadoop </tag>
-            
             <tag> 虚拟机 </tag>
             
             <tag> Linux </tag>
+            
+            <tag> Hadoop </tag>
             
             <tag> Storm </tag>
             
@@ -121,11 +150,11 @@
             
             <tag> 大型数据库 </tag>
             
-            <tag> Hadoop </tag>
-            
             <tag> 虚拟机 </tag>
             
             <tag> Linux </tag>
+            
+            <tag> Hadoop </tag>
             
             <tag> ZooKeeper </tag>
             
@@ -154,11 +183,11 @@
             
             <tag> 大型数据库 </tag>
             
-            <tag> Hadoop </tag>
-            
             <tag> 虚拟机 </tag>
             
             <tag> Linux </tag>
+            
+            <tag> Hadoop </tag>
             
             <tag> Spark </tag>
             
@@ -187,11 +216,11 @@
             
             <tag> 大型数据库 </tag>
             
-            <tag> Hadoop </tag>
-            
             <tag> 虚拟机 </tag>
             
             <tag> Linux </tag>
+            
+            <tag> Hadoop </tag>
             
             <tag> Sqoop </tag>
             
@@ -220,11 +249,11 @@
             
             <tag> 大型数据库 </tag>
             
-            <tag> Hadoop </tag>
-            
             <tag> 虚拟机 </tag>
             
             <tag> Linux </tag>
+            
+            <tag> Hadoop </tag>
             
             <tag> Mahout </tag>
             
@@ -253,13 +282,13 @@
             
             <tag> 大型数据库 </tag>
             
-            <tag> Hadoop </tag>
+            <tag> HBase </tag>
             
             <tag> 虚拟机 </tag>
             
             <tag> Linux </tag>
             
-            <tag> HBase </tag>
+            <tag> Hadoop </tag>
             
         </tags>
       
@@ -286,13 +315,13 @@
             
             <tag> 大型数据库 </tag>
             
-            <tag> Hadoop </tag>
-            
-            <tag> Hive </tag>
-            
             <tag> 虚拟机 </tag>
             
             <tag> Linux </tag>
+            
+            <tag> Hadoop </tag>
+            
+            <tag> Hive </tag>
             
         </tags>
       
@@ -305,7 +334,7 @@
       <link href="/%E7%AC%94%E8%AE%B0/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AF%AD%E5%8F%A5/"/>
       <url>/%E7%AC%94%E8%AE%B0/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AF%AD%E5%8F%A5/</url>
       
-        <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">新建文件夹</span><br><span class="line">进入文件夹，右击git bash here</span><br><span class="line"> $ git init</span><br><span class="line">    #（添加用户名+email）方法在底下 #</span><br><span class="line"> $ git remote add origin XXX// 添加远程仓库地址</span><br><span class="line"> $ git pull</span><br><span class="line">  -$ git add 文件名// 工作区→暂存区</span><br><span class="line">  -$ git commit -m &#x27;描述&#x27;// 暂存区→Git仓库</span><br><span class="line"> $ git push origin main</span><br><span class="line"> $ git push -u origin main</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>$ git clone -b dev origin     // 拉取特定分支(dev:分支名称)<br>$ git fetch origin dev<br>$ git pull origin dev</p><p>$ git checkout -b main        // 切换到main分支上（没有则创建）<br>$ git branch        // 展示分支<br>$ git merge master        // 将master分支合并到main上<br>$ gie branch -d master        // 将master分支删除</p><p>$ git push origin main    // 推到main分支上</p><p>$ git remote -v        // 查看远程仓库详细信息，可以看到仓库名称<br>$ git remote remove orign    // 删除orign仓库（如果把origin拼写成orign，删除错误名称仓库）<br>$ git remote add origin XXX    // 重新添加远程仓库地址</p><p>$ gti push -u origin master    // 提交到远程仓库的master主干<br>$ git push -f origin master    // 强制上传覆盖</p><p>$ git config –global user.name ‘username’<br>$ git config –global user.email ‘<a href="mailto:&#x79;&#111;&#117;&#x72;&#x5f;&#101;&#109;&#97;&#x69;&#108;&#x40;&#x78;&#x78;&#46;&#99;&#x6f;&#109;">&#x79;&#111;&#117;&#x72;&#x5f;&#101;&#109;&#97;&#x69;&#108;&#x40;&#x78;&#x78;&#46;&#99;&#x6f;&#109;</a>‘<br>$ git config –list        // 查看设置<br>$ git config  credential.helper store    // 不用每次push都输入账号密码</p><p>$ git status         // 查看当前文件的状况（工作区/暂存区）<br>$ git add 文件名        // 工作区→暂存区<br>$ git commit -m ‘描述’    // 暂存区→Git仓库</p><p>//查<br>git config –global –list<br>git config –global user.name</p><p>//增<br>git config  –global –add user.name xld</p><p>//删<br>git config  –global –unset user.name</p><p>//改<br>git config –global user.name xld</p><p>//开VPN代理，push失败 但能打开页面<br>$ git config http.proxy</p><p><a href="https://www.runoob.com/git/git-basic-operations.html">https://www.runoob.com/git/git-basic-operations.html</a></p><h3 id="github-com"><a href="#github-com" class="headerlink" title="github.com"></a>github.com</h3><p>13.114.40.48<br>13.250.177.223<br>13.229.188.59<br>52.74.223.119<br>52.192.72.89<br>140.82.112.4<br>192.30.255.113</p><h2 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h2><p>$ <strong>npm config set registry <a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></strong>     // 更换成淘宝的源</p><h2 id="vsCode："><a href="#vsCode：" class="headerlink" title="vsCode："></a>vsCode：</h2><p>File(文件)-&gt;Preferences(首选项)-&gt;Usersettings(设置)<br>搜索encoding，修改默认编码</p><p><strong>终端：</strong><br>write-host “hello world” -foregroundcolor “green”    // 打印颜色</p><p><strong>右键菜单：</strong></p><ol><li>win-R  “regedit”</li><li>“ 计算机\HKEY_CLASSES_ROOT\Directory\Background\shell “</li></ol><p><strong>linux：</strong><br>$ ps -e | grep apt</p><p><strong>服务端网卡：</strong><br>$ sudo dhclient enp0s8<br>$ sudo dhclient enp0s3</p><p><strong>Ubuntu桌面：</strong></p><ol><li><p>在命令行运行以下命令更新<br>$ apt-get update<br>$ apt-get upgrade</p></li><li><p>安装桌面<br>$ apt-get install -y ubuntu-desktop</p></li><li><p>安装xrdp<br>$ apt-get install -y xrdp<br>安装完成后，即可使用Windows远程桌面工具登录Ubuntu。</p></li></ol><p><strong>Ubuntu换源：</strong><br>$ sudo vim /etc/apt/sources.list<br>将     <a href="http://cn.archive.ubuntu.com/ubuntu">http://cn.archive.ubuntu.com/ubuntu</a><br>换成    <a href="https://mirrors.aliyun.com/ubuntu/">https://mirrors.aliyun.com/ubuntu/</a></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">新建文件夹</span><br><span class="line">进入文件夹，右击git bash here</span><br><span class="line"> $ git init</span><br><span class="line">    #（添加用户名+email）方法在底下 #</span><br><span class="line"> $ git remote add origin XXX// 添加远程仓库地址</span><br><span class="line"> $ git pull</span><br><span class="line">  -$ git add 文件名// 工作区→暂存区</span><br><span class="line">  -$ git commit -m &#x27;描述&#x27;// 暂存区→Git仓库</span><br><span class="line"> $ git push origin main</span><br><span class="line"> $ git push -u origin main</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>$ git clone -b dev origin     // 拉取特定分支(dev:分支名称)<br>$ git fetch origin dev<br>$ git pull origin dev</p><p>$ git checkout -b main        // 切换到main分支上（没有则创建）<br>$ git branch        // 展示分支<br>$ git merge master        // 将master分支合并到main上<br>$ gie branch -d master        // 将master分支删除</p><p>$ git push origin main    // 推到main分支上</p><p>$ git remote -v        // 查看远程仓库详细信息，可以看到仓库名称<br>$ git remote remove orign    // 删除orign仓库（如果把origin拼写成orign，删除错误名称仓库）<br>$ git remote add origin XXX    // 重新添加远程仓库地址</p><p>$ gti push -u origin master    // 提交到远程仓库的master主干<br>$ git push -f origin master    // 强制上传覆盖</p><p>$ git config –global user.name ‘username’<br>$ git config –global user.email ‘<a href="mailto:&#x79;&#111;&#x75;&#x72;&#95;&#101;&#x6d;&#x61;&#x69;&#108;&#64;&#x78;&#120;&#x2e;&#99;&#111;&#x6d;">&#x79;&#111;&#x75;&#x72;&#95;&#101;&#x6d;&#x61;&#x69;&#108;&#64;&#x78;&#120;&#x2e;&#99;&#111;&#x6d;</a>‘<br>$ git config –list        // 查看设置<br>$ git config  credential.helper store    // 不用每次push都输入账号密码</p><p>$ git status         // 查看当前文件的状况（工作区/暂存区）<br>$ git add 文件名        // 工作区→暂存区<br>$ git commit -m ‘描述’    // 暂存区→Git仓库</p><p>//查<br>git config –global –list<br>git config –global user.name</p><p>//增<br>git config  –global –add user.name xld</p><p>//删<br>git config  –global –unset user.name</p><p>//改<br>git config –global user.name xld</p><p>//开VPN代理，push失败 但能打开页面<br>$ git config http.proxy</p><p><a href="https://www.runoob.com/git/git-basic-operations.html">https://www.runoob.com/git/git-basic-operations.html</a></p><h3 id="github-com"><a href="#github-com" class="headerlink" title="github.com"></a>github.com</h3><p>13.114.40.48<br>13.250.177.223<br>13.229.188.59<br>52.74.223.119<br>52.192.72.89<br>140.82.112.4<br>192.30.255.113</p><h2 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h2><p>$ <strong>npm config set registry <a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></strong>     // 更换成淘宝的源</p><h2 id="vsCode："><a href="#vsCode：" class="headerlink" title="vsCode："></a>vsCode：</h2><p>File(文件)-&gt;Preferences(首选项)-&gt;Usersettings(设置)<br>搜索encoding，修改默认编码</p><p><strong>终端：</strong><br>write-host “hello world” -foregroundcolor “green”    // 打印颜色</p><p><strong>右键菜单：</strong></p><ol><li>win-R  “regedit”</li><li>“ 计算机\HKEY_CLASSES_ROOT\Directory\Background\shell “</li></ol><p><strong>linux：</strong><br>$ ps -e | grep apt</p><p><strong>服务端网卡：</strong><br>$ sudo dhclient enp0s8<br>$ sudo dhclient enp0s3</p><p><strong>Ubuntu桌面：</strong></p><ol><li><p>在命令行运行以下命令更新<br>$ apt-get update<br>$ apt-get upgrade</p></li><li><p>安装桌面<br>$ apt-get install -y ubuntu-desktop</p></li><li><p>安装xrdp<br>$ apt-get install -y xrdp<br>安装完成后，即可使用Windows远程桌面工具登录Ubuntu。</p></li></ol><p><strong>Ubuntu换源：</strong><br>$ sudo vim /etc/apt/sources.list<br>将     <a href="http://cn.archive.ubuntu.com/ubuntu">http://cn.archive.ubuntu.com/ubuntu</a><br>换成    <a href="https://mirrors.aliyun.com/ubuntu/">https://mirrors.aliyun.com/ubuntu/</a></p>]]></content>
       
       
       <categories>
@@ -415,11 +444,11 @@
       
         <tags>
             
-            <tag> Hadoop </tag>
-            
             <tag> 虚拟机 </tag>
             
             <tag> Linux </tag>
+            
+            <tag> Hadoop </tag>
             
         </tags>
       
