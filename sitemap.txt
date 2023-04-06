@@ -35,9 +35,9 @@ https://tenyding.cn/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/
 https://tenyding.cn/tags/Linux/
 https://tenyding.cn/tags/Hadoop/
 https://tenyding.cn/tags/Hive/
+https://tenyding.cn/tags/Kafka/
 https://tenyding.cn/tags/JS/
 https://tenyding.cn/tags/%E5%BC%82%E6%AD%A5/
-https://tenyding.cn/tags/Kafka/
 https://tenyding.cn/tags/Mahout/
 https://tenyding.cn/tags/Spark/
 https://tenyding.cn/tags/Sqoop/
