@@ -1,0 +1,49 @@
+
+.article-sort{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.article-sort-item::before{
+    content: none;
+}
+
+.article-sort-item{
+    width: 80px;
+    height: 80px;
+}
+
+.article-sort-item-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.article-sort-item-info{
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+.article-sort-item-info:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.article-sort-item-time{
+
+}
+.post-meta-date-created{
+
+}
+.article-sort-item-title{
+
+}
+
+.year{
+    width: 100%;
+}
+
+.content-inner,#layout{
+    max-width: 1500px;
+}
