@@ -1,0 +1,389 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>浏览器-Chrome | 细粒丁の小窝</title><meta name="keywords" content="前端"><meta name="author" content="细粒丁"><meta name="copyright" content="细粒丁"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="never"><meta name="description" content="浏览器原理，以谷歌浏览器为例进行学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器-Chrome">
+<meta property="og:url" content="https://tenyding.cn/study/%E5%89%8D%E7%AB%AF/Browser-Chrome/index.html">
+<meta property="og:site_name" content="细粒丁の小窝">
+<meta property="og:description" content="浏览器原理，以谷歌浏览器为例进行学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tenyding.cn/image/bg7.jpg">
+<meta property="article:published_time" content="2023-12-10T03:21:03.000Z">
+<meta property="article:modified_time" content="2023-12-10T12:11:40.998Z">
+<meta property="article:author" content="细粒丁">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tenyding.cn/image/bg7.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://tenyding.cn/study/%E5%89%8D%E7%AB%AF/Browser-Chrome/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-1pSPNKiWuW"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/li1055107552/My-blog@master/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8f6becbae63b8ad7610d7ae36666ce2e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: 细粒丁","link":"链接: ","source":"来源: 细粒丁の小窝","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
+  source: {
+    jQuery: '/blog/cdn/cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: '/blog/cdn/cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: '/blog/cdn/cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: '/blog/cdn/cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: '/blog/cdn/cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '浏览器-Chrome',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-10 20:11:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/self/css/csdn/iconfont.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/avatar.jpg" onerror="onerror=null;src='/image/loading.webp'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 文章标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/image/bg7.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">细粒丁の小窝</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 文章标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">浏览器-Chrome</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-10T03:21:03.000Z" title="发表于 2023-12-10 11:21:03">2023-12-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-10T12:11:40.998Z" title="更新于 2023-12-10 20:11:40">2023-12-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="浏览器-Chrome"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="入门小知识"><a href="#入门小知识" class="headerlink" title="入门小知识"></a>入门小知识</h1><h2 id="何为进程"><a href="#何为进程" class="headerlink" title="何为进程"></a>何为进程</h2><p>程序运行需要开辟专属于自己的内存空间，这部分可以简单理解为进程。</p>
+<p><strong>进程</strong> 是程序的实体。</p>
+<p><strong>进程</strong> 是系统进行资源分配的基本单位，是操作系统结构的基础。</p>
+<p><strong>进程</strong> 是<strong>线程</strong>的容器。</p>
+<p>每个应用都至少有一个进程。进程之间相互独立，进程之间需要通信需要双方同意。</p>
+<h2 id="何为线程"><a href="#何为线程" class="headerlink" title="何为线程"></a>何为线程</h2><p>线程是OS能够进行运算调度的最小单位。</p>
+<p>它是进程中运行代码的实际单位。</p>
+<p>一个进程至少有一个线程，所以在进程开启后 会自动创建一个线程来运行代码，该线程称之为主线程。</p>
+<p>如果程序需要同时执行多块代码，主线程就会启动更多的线程来执行代码，所以一个进程中可以包含多个线程。</p>
+<h2 id="抽象理解"><a href="#抽象理解" class="headerlink" title="抽象理解"></a>抽象理解</h2><p>可以把一个应用（进程）比作一个产品工厂</p>
+<p>这个工厂会有一个厂长 → 主线程，主线程负责把控方向，调度人员，完成一些高难度的、主要的任务</p>
+<p>一个生产产品的工厂只有一个厂长肯定是不行的，所以厂长就请了很多的员工，并未不同的员工分配不同的工作</p>
+<p>这也就是 主线程 创建新的线程，新的线程可以执行其他的任务（子线程）</p>
+<br>
+
+<hr>
+<br>
+
+<h1 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h1><p><strong>浏览器是一个 多进程 多线程 的应用程序</strong></p>
+<p>谷歌浏览器里，通过右击顶部的标签栏，可以打开任务管理器 <code>Shift + Esc</code></p>
+<p>Windows 也可以通过任务管理器查看</p>
+<p>一个pid就是一个进程</p>
+<h2 id="浏览器的主要进程"><a href="#浏览器的主要进程" class="headerlink" title="浏览器的主要进程"></a>浏览器的主要进程</h2><ol>
+<li><p>浏览器进程</p>
+<p>主要负责界面展示，用户交互，子进程管理等。浏览器进程内部会启动多个线程处理不同的任务。</p>
+</li>
+<li><p>GPU进程</p>
+<p>如果有GPU，就会创建GPU进程，用于加速后面的渲染。其他进程&#x2F;线程不能直接调用GPU，得通过GPU进程调用</p>
+</li>
+<li><p>网络进程</p>
+<p>主要负责加载网络资源。网络进程内部也会启动多个线程来处理不同的网络任务。</p>
+</li>
+<li><p>存储进程</p>
+<p>为 local&#x2F;session storage, service worker, indexed_db 提供存储服务。</p>
+</li>
+<li><p>渲染(Renderer)进程<strong>（重点）</strong></p>
+<p>负责页面的渲染和 JavaScript 脚本的执行。</p>
+<p>渲染进程启动后，会开启一个<strong>渲染主线程</strong>，主线程负责执行 HTML、CSS、JS 代码。</p>
+<p>默认情况下，浏览器会为每个标签页开启一个新的渲染进程，以保证不同的标签页之间不相互影响。</p>
+<p>将来该默认模式可能会有所改变，更多参见 <a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/main/docs/process_model_and_site_isolation.md#Modes-and-Availability">chrome官方说明文档</a></p>
+</li>
+<li><p>Service Worker 服务工作线程，属后台脚本</p>
+</li>
+<li><p>插件进程</p>
+</li>
+</ol>
+<h2 id="渲染进程"><a href="#渲染进程" class="headerlink" title="渲染进程"></a>渲染进程</h2><h3 id="渲染主线程"><a href="#渲染主线程" class="headerlink" title="渲染主线程"></a>渲染主线程</h3><h4 id="主要工作内容"><a href="#主要工作内容" class="headerlink" title="主要工作内容"></a>主要工作内容</h4><p>渲染主线程是浏览器中最繁忙的线程，需要它处理的任务包括但不限于：</p>
+<ul>
+<li>执行全局 JS 代码</li>
+<li>解析 HTML</li>
+<li>解析 CSS</li>
+<li>计算样式</li>
+<li>布局</li>
+<li>处理图层</li>
+<li>每秒把页面画 60 次（页面刷新的帧率）</li>
+<li>执行事件处理函数</li>
+<li>执行计时器的回调函数</li>
+<li>……</li>
+</ul>
+<h4 id="如何调度执行"><a href="#如何调度执行" class="headerlink" title="如何调度执行"></a>如何调度执行</h4><p>比如：</p>
+<ul>
+<li>我正在执行一个 JS 函数，执行到一半的时候用户点击了按钮，我该立即去执行点击事件的处理函数吗？</li>
+<li>我正在执行一个 JS 函数，执行到一半的时候某个计时器到达了时间，我该立即去执行它的回调吗？</li>
+<li>浏览器进程通知我“用户点击了按钮”，与此同时，某个计时器也到达了时间，我应该处理哪一个呢？</li>
+<li>……</li>
+</ul>
+<p>于是就有了这样一个<strong>事件循环</strong>的模型，任务通过排队来交给渲染主线程来执行。</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="E:_Project_git仓库\ImageHost\ImageHost\Browser-Chrome\202208092230847.png" alt="事件循环"></p>
+<h4 id="为什么渲染进程不适用多个线程来处理这些事情"><a href="#为什么渲染进程不适用多个线程来处理这些事情" class="headerlink" title="为什么渲染进程不适用多个线程来处理这些事情"></a>为什么渲染进程不适用多个线程来处理这些事情</h4><p>浏览器渲染进程通常是单线程的，这是因为多线程处理可能会引发很多问题。以下是一些可能的问题：</p>
+<ul>
+<li>竞态条件：多线程处理会导致访问共享内存的竞争条件，可能导致数据不一致和死锁等问题。</li>
+<li>同步问题：多线程需要进行同步，避免数据竞争和死锁，这会增加代码的复杂度和开销。</li>
+<li>安全问题：多线程可能会存在安全漏洞，如数据泄露、内存溢出等问题。</li>
+<li>性能问题：多线程处理可能会导致过多的上下文切换和内存消耗，从而降低程序的性能和稳定性。</li>
+</ul>
+<p>相比之下，单线程处理有以下优点：</p>
+<ul>
+<li>简单易用：单线程的处理方式更加简单易用，开发人员不需要考虑多线程处理中的竞态条件、同步问题和安全问题。</li>
+<li>可靠稳定：单线程处理避免了多线程处理中的死锁和资源争用等问题，从而提高了程序的可靠性和稳定性。</li>
+<li>高效节省：单线程处理可以避免多线程处理中的上下文切换和内存消耗等问题，从而提高了程序的性能和节省了系统资源。</li>
+</ul>
+<p>虽然单线程处理可能会存在一些缺点，如无法充分利用多核CPU等问题，但是它是目前浏览器渲染进程的常用处理方式，可以通过事件循环和异步编程等技术来提高程序的性能和并发处理能力。</p>
+<p>参考: <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44063746/article/details/130624809">为什么渲染进程不适用多个线程来处理事情</a></p>
+<h3 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>W3C的官方称法是: <a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">Event Loop</a></p>
+<p>Chrome 的称法是: <a target="_blank" rel="noopener" href="https://source.chromium.org/chromium/chromium/src/+/main:ppapi/cpp/message_loop.h;l=135?q=messageloop">Message Loop</a></p>
+<p><a target="_blank" rel="noopener" href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/public/platform/task_type.h;l=80?q=event-loop">This task source is used when an algorithm requires a microtask to be queued.</a></p>
+<p>下面整个<strong>执行</strong>的过程，称为事件循环。</p>
+<h4 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h4><ol>
+<li>在最开始的时候，<strong>渲染主线程</strong>会进入无限循环</li>
+<li>每一次循环都会按优先级检查<strong>消息队列</strong>是否存在任务<ul>
+<li>若队列不为空，则取出第一个任务，并交给渲染主线程进行执行，执行完之后进入下一次循环</li>
+<li>若队列为空，则进入休眠状态</li>
+</ul>
+</li>
+<li>其他的所有线程，包括其他进程的线程，都可以随时向<strong>消息队列</strong>的末尾添加任务<ul>
+<li>若主线程为休眠状态，则会进行唤醒</li>
+</ul>
+</li>
+</ol>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>事件循环需要有一个或多个<strong>任务队列</strong>以及一个<strong>微任务队列</strong>，任务队列是一组任务。</p>
+<p>任务队列是<strong>有序集</strong>，不是队列。</p>
+<p>因为<strong>事件循环处理模型</strong>是从所选队列中获取第一个可运行的任务 ，而不是使第一个任务出队。</p>
+<p>微任务队列不是任务队列。</p>
+<p>来源: <a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">W3C - HTML Standard</a></p>
+<h4 id="队列类型"><a href="#队列类型" class="headerlink" title="队列类型"></a>队列类型</h4><ul>
+<li>微队列(必须有) 优先级（最高）: 用户存放需要最快执行的任务</li>
+<li>交互队列  优先级（最高）: 用于存放用户操作后产生的事件处理任务</li>
+<li>延时队列  优先级（中）: 用于存放计时器到达后的回调任务</li>
+<li>……</li>
+</ul>
+<blockquote>
+<p>添加任务到微队列的主要方式主要是使用 Promise、MutationObserver</p>
+</blockquote>
+<blockquote>
+<p>根据 W3C 官方的解释，每个任务有不同的类型，同类型的任务必须在同一个队列，不同的任务可以属于不同的队列。<br>不同任务队列有不同的优先级，在一次事件循环中，由浏览器自行决定取哪一个队列的任务。<br>但浏览器必须有一个微队列，微队列的任务一定具有最高的优先级，必须优先调度执行。</p>
+</blockquote>
+<h3 id="其他主要线程"><a href="#其他主要线程" class="headerlink" title="其他主要线程"></a>其他主要线程</h3><ul>
+<li>网络线程</li>
+<li>计时线程</li>
+<li>交互线程</li>
+<li>……</li>
+</ul>
+<h2 id="网络进程"><a href="#网络进程" class="headerlink" title="网络进程"></a>网络进程</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/420566623">透过 Chrome 深入理解浏览器导航过程</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">细粒丁</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tenyding.cn/study/%E5%89%8D%E7%AB%AF/Browser-Chrome/">https://tenyding.cn/study/前端/Browser-Chrome/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tenyding.cn" target="_blank">细粒丁の小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></div><div class="post_share"><div class="social-share" data-image="/image/bg7.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="/blog/cdn/cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/%E5%B0%8F%E8%AE%B0/%E7%B2%97%E8%AE%B0%E4%B8%80%E6%AC%A1oom/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/bg10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">粗记一次OOM!</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A5%E9%97%A8%E5%B0%8F%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">入门小知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">何为进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">何为线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%90%86%E8%A7%A3"><span class="toc-number">1.3.</span> <span class="toc-text">抽象理解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">浏览器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">浏览器的主要进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.2.</span> <span class="toc-text">渲染进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E4%B8%BB%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">渲染主线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">主要工作内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%B0%83%E5%BA%A6%E6%89%A7%E8%A1%8C"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">如何调度执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B%E4%B8%8D%E9%80%82%E7%94%A8%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%9D%A5%E5%A4%84%E7%90%86%E8%BF%99%E4%BA%9B%E4%BA%8B%E6%83%85"><span class="toc-number">2.2.1.3.</span> <span class="toc-text">为什么渲染进程不适用多个线程来处理这些事情</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.2.2.</span> <span class="toc-text">事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">执行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-number">2.2.3.</span> <span class="toc-text">消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%9F%E5%88%97%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">队列类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%B8%BB%E8%A6%81%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.2.4.</span> <span class="toc-text">其他主要线程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.3.</span> <span class="toc-text">网络进程</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/image/bg7.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 细粒丁</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>粤ICP备20048893号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/blog/cdn/cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="/blog/cdn/cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/blog/cdn/cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('/blog/cdn/cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('/blog/cdn/cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://tenyding.cn/proxy/twikoo',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://tenyding.cn/proxy/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.staticfile.org/twikoo/1.6.7/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="click-heart" src="/blog/cdn/cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="/blog/cdn/cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="/blog/cdn/cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/blog/cdn/cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://tenyding.cn/proxy/github-calendar?li1055107552";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="li1055107552";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = ' <div class="recent-post-item" style="width:100%;height:auto;padding:10px;"> <div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"> <path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"> <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"> </animateTransform> </path> </svg> </div> <div id="github_container"></div> </div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
