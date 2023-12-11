@@ -5,13 +5,13 @@
 <meta property="og:site_name" content="细粒丁の小窝">
 <meta property="og:description" content="浏览器原理，以谷歌浏览器为例进行学习">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tenyding.cn/image/bg7.jpg">
+<meta property="og:image" content="https://tenyding.cn/image/bg4.jpg">
 <meta property="article:published_time" content="2023-12-10T03:21:03.000Z">
-<meta property="article:modified_time" content="2023-12-10T12:11:40.998Z">
+<meta property="article:modified_time" content="2023-12-11T13:03:17.310Z">
 <meta property="article:author" content="细粒丁">
 <meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tenyding.cn/image/bg7.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://tenyding.cn/study/%E5%89%8D%E7%AB%AF/Browser-Chrome/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-1pSPNKiWuW"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/li1055107552/My-blog@master/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://tenyding.cn/image/bg4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://tenyding.cn/study/%E5%89%8D%E7%AB%AF/Browser-Chrome/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-1pSPNKiWuW"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/li1055107552/My-blog@master/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?8f6becbae63b8ad7610d7ae36666ce2e";
@@ -65,7 +65,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-12-10 20:11:40'
+  postUpdate: '2023-12-11 21:03:17'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -159,10 +159,10 @@
       }
     }
     detectApple()
-    })(window)</script><link rel="stylesheet" href="/self/css/csdn/iconfont.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/avatar.jpg" onerror="onerror=null;src='/image/loading.webp'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 文章标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/image/bg7.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">细粒丁の小窝</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 文章标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">浏览器-Chrome</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-10T03:21:03.000Z" title="发表于 2023-12-10 11:21:03">2023-12-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-10T12:11:40.998Z" title="更新于 2023-12-10 20:11:40">2023-12-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="浏览器-Chrome"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="入门小知识"><a href="#入门小知识" class="headerlink" title="入门小知识"></a>入门小知识</h1><h2 id="何为进程"><a href="#何为进程" class="headerlink" title="何为进程"></a>何为进程</h2><p>程序运行需要开辟专属于自己的内存空间，这部分可以简单理解为进程。</p>
+    })(window)</script><link rel="stylesheet" href="/self/css/csdn/iconfont.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/avatar.jpg" onerror="onerror=null;src='/image/loading.webp'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 文章标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/image/bg4.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">细粒丁の小窝</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 文章标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">浏览器-Chrome</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-10T03:21:03.000Z" title="发表于 2023-12-10 11:21:03">2023-12-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-11T13:03:17.310Z" title="更新于 2023-12-11 21:03:17">2023-12-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="浏览器-Chrome"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="入门小知识"><a href="#入门小知识" class="headerlink" title="入门小知识"></a>入门小知识</h1><h2 id="何为进程"><a href="#何为进程" class="headerlink" title="何为进程"></a>何为进程</h2><p>程序运行需要开辟专属于自己的内存空间，这部分可以简单理解为进程。</p>
 <p><strong>进程</strong> 是程序的实体。</p>
 <p><strong>进程</strong> 是系统进行资源分配的基本单位，是操作系统结构的基础。</p>
-<p><strong>进程</strong> 是<strong>线程</strong>的容器。</p>
+<p><strong>进程</strong> 是 <strong>线程</strong> 的容器。</p>
 <p>每个应用都至少有一个进程。进程之间相互独立，进程之间需要通信需要双方同意。</p>
 <h2 id="何为线程"><a href="#何为线程" class="headerlink" title="何为线程"></a>何为线程</h2><p>线程是OS能够进行运算调度的最小单位。</p>
 <p>它是进程中运行代码的实际单位。</p>
@@ -181,15 +181,16 @@
 <p>谷歌浏览器里，通过右击顶部的标签栏，可以打开任务管理器 <code>Shift + Esc</code></p>
 <p>Windows 也可以通过任务管理器查看</p>
 <p>一个pid就是一个进程</p>
+<p>Chrome 目前采用的是 SOA 架构，主要特点是将应用程序的不同的 Service 进行拆分，并通过这些服务之间定义良好的接口和协议联系起来。</p>
 <h2 id="浏览器的主要进程"><a href="#浏览器的主要进程" class="headerlink" title="浏览器的主要进程"></a>浏览器的主要进程</h2><ol>
 <li><p>浏览器进程</p>
 <p>主要负责界面展示，用户交互，子进程管理等。浏览器进程内部会启动多个线程处理不同的任务。</p>
 </li>
 <li><p>GPU进程</p>
-<p>如果有GPU，就会创建GPU进程，用于加速后面的渲染。其他进程&#x2F;线程不能直接调用GPU，得通过GPU进程调用</p>
+<p>如果有GPU，就会创建GPU进程，用于加速后面的页面渲染。其他进程&#x2F;线程不能直接调用GPU，得通过GPU进程调用</p>
 </li>
 <li><p>网络进程</p>
-<p>主要负责加载网络资源。网络进程内部也会启动多个线程来处理不同的网络任务。</p>
+<p>主要负责处理网络资源加载，请求响应，校验 CORS。网络进程内部也会启动多个线程来处理不同的网络任务。</p>
 </li>
 <li><p>存储进程</p>
 <p>为 local&#x2F;session storage, service worker, indexed_db 提供存储服务。</p>
@@ -197,12 +198,14 @@
 <li><p>渲染(Renderer)进程<strong>（重点）</strong></p>
 <p>负责页面的渲染和 JavaScript 脚本的执行。</p>
 <p>渲染进程启动后，会开启一个<strong>渲染主线程</strong>，主线程负责执行 HTML、CSS、JS 代码。</p>
-<p>默认情况下，浏览器会为每个标签页开启一个新的渲染进程，以保证不同的标签页之间不相互影响。</p>
+<p>默认情况下，浏览器会为每个标签页开启一个新的渲染进程，以保证不同的标签页之间不相互影响，无关乎是否为 same-site 站点(目前)。</p>
 <p>将来该默认模式可能会有所改变，更多参见 <a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/main/docs/process_model_and_site_isolation.md#Modes-and-Availability">chrome官方说明文档</a></p>
+<p>同时 V8 和 Blink 也都运行在该进程中。</p>
 </li>
 <li><p>Service Worker 服务工作线程，属后台脚本</p>
 </li>
 <li><p>插件进程</p>
+<p>负责插件运行，根据插件的功能决定是否运行在 Sandbox 环境</p>
 </li>
 </ol>
 <h2 id="渲染进程"><a href="#渲染进程" class="headerlink" title="渲染进程"></a>渲染进程</h2><h3 id="渲染主线程"><a href="#渲染主线程" class="headerlink" title="渲染主线程"></a>渲染主线程</h3><h4 id="主要工作内容"><a href="#主要工作内容" class="headerlink" title="主要工作内容"></a>主要工作内容</h4><p>渲染主线程是浏览器中最繁忙的线程，需要它处理的任务包括但不限于：</p>
@@ -225,8 +228,8 @@
 <li>浏览器进程通知我“用户点击了按钮”，与此同时，某个计时器也到达了时间，我应该处理哪一个呢？</li>
 <li>……</li>
 </ul>
-<p>于是就有了这样一个<strong>事件循环</strong>的模型，任务通过排队来交给渲染主线程来执行。</p>
-<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="E:_Project_git仓库\ImageHost\ImageHost\Browser-Chrome\202208092230847.png" alt="事件循环"></p>
+<p>于是就有了这样一个 <strong>事件循环</strong> 的模型，任务通过排队来交给渲染主线程来执行。</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://gitee.com/xiliding/ImageHost/raw/master/Browser-Chrome/202208092230847.png" alt="事件循环"></p>
 <h4 id="为什么渲染进程不适用多个线程来处理这些事情"><a href="#为什么渲染进程不适用多个线程来处理这些事情" class="headerlink" title="为什么渲染进程不适用多个线程来处理这些事情"></a>为什么渲染进程不适用多个线程来处理这些事情</h4><p>浏览器渲染进程通常是单线程的，这是因为多线程处理可能会引发很多问题。以下是一些可能的问题：</p>
 <ul>
 <li>竞态条件：多线程处理会导致访问共享内存的竞争条件，可能导致数据不一致和死锁等问题。</li>
@@ -245,22 +248,22 @@
 <h3 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>W3C的官方称法是: <a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">Event Loop</a></p>
 <p>Chrome 的称法是: <a target="_blank" rel="noopener" href="https://source.chromium.org/chromium/chromium/src/+/main:ppapi/cpp/message_loop.h;l=135?q=messageloop">Message Loop</a></p>
 <p><a target="_blank" rel="noopener" href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/public/platform/task_type.h;l=80?q=event-loop">This task source is used when an algorithm requires a microtask to be queued.</a></p>
-<p>下面整个<strong>执行</strong>的过程，称为事件循环。</p>
+<p>下面整个 <strong>执行</strong> 的过程，称为事件循环。</p>
 <h4 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h4><ol>
-<li>在最开始的时候，<strong>渲染主线程</strong>会进入无限循环</li>
-<li>每一次循环都会按优先级检查<strong>消息队列</strong>是否存在任务<ul>
+<li>在最开始的时候， <strong>渲染主线程</strong> 会进入无限循环</li>
+<li>每一次循环都会按优先级检查 <strong>消息队列</strong> 是否存在任务<ul>
 <li>若队列不为空，则取出第一个任务，并交给渲染主线程进行执行，执行完之后进入下一次循环</li>
 <li>若队列为空，则进入休眠状态</li>
 </ul>
 </li>
-<li>其他的所有线程，包括其他进程的线程，都可以随时向<strong>消息队列</strong>的末尾添加任务<ul>
+<li>其他的所有线程，包括其他进程的线程，都可以随时向 <strong>消息队列</strong> 的末尾添加任务<ul>
 <li>若主线程为休眠状态，则会进行唤醒</li>
 </ul>
 </li>
 </ol>
-<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>事件循环需要有一个或多个<strong>任务队列</strong>以及一个<strong>微任务队列</strong>，任务队列是一组任务。</p>
-<p>任务队列是<strong>有序集</strong>，不是队列。</p>
-<p>因为<strong>事件循环处理模型</strong>是从所选队列中获取第一个可运行的任务 ，而不是使第一个任务出队。</p>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>事件循环需要有一个或多个 <strong>任务队列</strong> 以及一个 <strong>微任务队列</strong> ，任务队列是一组任务。</p>
+<p>任务队列是 <strong>有序集</strong> ，不是队列。</p>
+<p>因为 <strong>事件循环处理模型</strong> 是从所选队列中获取第一个可运行的任务 ，而不是使第一个任务出队。</p>
 <p>微任务队列不是任务队列。</p>
 <p>来源: <a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop">W3C - HTML Standard</a></p>
 <h4 id="队列类型"><a href="#队列类型" class="headerlink" title="队列类型"></a>队列类型</h4><ul>
@@ -281,8 +284,162 @@
 <li>交互线程</li>
 <li>……</li>
 </ul>
-<h2 id="网络进程"><a href="#网络进程" class="headerlink" title="网络进程"></a>网络进程</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/420566623">透过 Chrome 深入理解浏览器导航过程</a></p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">细粒丁</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tenyding.cn/study/%E5%89%8D%E7%AB%AF/Browser-Chrome/">https://tenyding.cn/study/前端/Browser-Chrome/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tenyding.cn" target="_blank">细粒丁の小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></div><div class="post_share"><div class="social-share" data-image="/image/bg7.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="/blog/cdn/cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/%E5%B0%8F%E8%AE%B0/%E7%B2%97%E8%AE%B0%E4%B8%80%E6%AC%A1oom/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/bg10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">粗记一次OOM!</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A5%E9%97%A8%E5%B0%8F%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">入门小知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">何为进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">何为线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%90%86%E8%A7%A3"><span class="toc-number">1.3.</span> <span class="toc-text">抽象理解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">浏览器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">浏览器的主要进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.2.</span> <span class="toc-text">渲染进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E4%B8%BB%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">渲染主线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">主要工作内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%B0%83%E5%BA%A6%E6%89%A7%E8%A1%8C"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">如何调度执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B%E4%B8%8D%E9%80%82%E7%94%A8%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%9D%A5%E5%A4%84%E7%90%86%E8%BF%99%E4%BA%9B%E4%BA%8B%E6%83%85"><span class="toc-number">2.2.1.3.</span> <span class="toc-text">为什么渲染进程不适用多个线程来处理这些事情</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.2.2.</span> <span class="toc-text">事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">执行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-number">2.2.3.</span> <span class="toc-text">消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%9F%E5%88%97%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">队列类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%B8%BB%E8%A6%81%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.2.4.</span> <span class="toc-text">其他主要线程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.3.</span> <span class="toc-text">网络进程</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/image/bg7.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 细粒丁</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>粤ICP备20048893号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/blog/cdn/cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="/blog/cdn/cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/blog/cdn/cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+<h2 id="网络进程"><a href="#网络进程" class="headerlink" title="网络进程"></a>网络进程</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li><p>代码简化：无论请求来自哪个进程，网络请求都应该以相同的方式发出。同样，如果将来实现移动流程，调用者不必进行更改。</p>
+</li>
+<li><p>性能：mojo 服务可以从任何线程调用，从而减少线程跳数。它还可以使用 Blink 字符串类型等直接从 Blink 调用，从而减少转换和层数。</p>
+</li>
+<li><p>长期来看：使用 mojo 接口并将网络代码与 chrome 代码隔离意味着我们最终可以将网络代码移至单独的进程，以提高稳定性和安全性。这还允许我们在 Chrome 未运行时（即在带有 ARC++ 的 ChromeOS 上）或在所有平台上（可能来自 Service Worker）而不运行浏览器时从其他 Mojo 应用程序发出网络请求。</p>
+</li>
+</ul>
+<p>参考：</p>
+<ul>
+<li>源码: <a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/aa575cd9100984ba7cf7fc0377d7c5d40abbdb5f/mojo/services/network/">service model</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bigben0123/p/14918861.html">Network Service in Chrome</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/420566623">透过 Chrome 深入理解浏览器导航过程</a></li>
+</ul>
+<h3 id="导航篇"><a href="#导航篇" class="headerlink" title="导航篇"></a>导航篇</h3><h4 id="解析-URI"><a href="#解析-URI" class="headerlink" title="解析 URI"></a>解析 URI</h4><p>当在地址栏输入内容按下回车后，Chrome 首先会解析内容，判断这是URL还是搜索内容</p>
+<ul>
+<li>若是搜索内容则自动URL编码并拼接为默认搜索引擎的 params<br>例如谷歌搜索 <code>https://www.google.com/search?q=test</code></li>
+<li>若是URI，则处理URI，添加 http 并默认访问 80 端口号<br>如 <code>test.com</code></li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="E:_Project_git仓库\ImageHost\ImageHost\Browser-Chrome\v2-f6176f6362f052b644a3508e4f18f477_r.jpg" alt="img"></p>
+<br>
+
+<blockquote>
+<p>在 Chrome 层面，如果你的地址栏原本就有展示页面，那么进行上述操作后，会触发当前页面的 <code>beforeunload</code> 与 <code>unload</code> 事件。</p>
+<p>同时浏览器标签进入 loading 图标状态。</p>
+<p>新页面有两个重要的时间节点，在渲染篇会详细介绍:</p>
+<p><code>interactive</code>: 它表示浏览器已经完成了 HTML parser 、Recalculate Style、Layout Tree、Render Tree、draw list 等工作。</p>
+<p><code>complete</code>: 它表示浏览器已经完成页面渲染，这会替换掉本窗口原本的位图，显示最新的界面。</p>
+<p>在 <code>interactive</code> 与 <code>complete</code> 之间，就是渲染进程中的合成线程的工作位置，Chrome 渲染进程基于 skia 进行 2D 界面元素的绘制。</p>
+</blockquote>
+<br>
+
+<h4 id="构建请求"><a href="#构建请求" class="headerlink" title="构建请求"></a>构建请求</h4><p>通过 URI Check 后，Chrome 需要为它创建 get 请求</p>
+<p>Chrome 主进程需要通过 IPC 把构建请求的任务委托给 NetWork Service 负责此任务。</p>
+<p>NetWork Service 接受任务后，创建了 get 请求，其中请求行由 请求方法 + 请求路径 + HTTP 版本号 组成；请求头信息由 Chrome 内置提供。</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="E:_Project_git仓库\ImageHost\ImageHost\Browser-Chrome\v2-7cb2090fbe9bfb8bb63463b5f11cd92d_720w.webp" alt="img"></p>
+<h4 id="查找强缓存"><a href="#查找强缓存" class="headerlink" title="查找强缓存"></a>查找强缓存</h4><p>NetWork Service 会委托 Storage Service 依次在</p>
+<ul>
+<li>service work cache<ul>
+<li>memory cache<ul>
+<li>disk cache<ul>
+<li>push cache（HTTP2 Stream）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>中寻找对应的 URI 是否有可用的强缓存，如果存在强缓存，则直接使用缓存进入浏览器解析环节，否则进入 <strong>DNS 解析</strong> 。</p>
+<h4 id="DNS-解析"><a href="#DNS-解析" class="headerlink" title="DNS 解析"></a>DNS 解析</h4><p>若强缓存不存在或过期时，NetWork Service 继续将报文发送至接收端。</p>
+<p>这需要 OS 的配合，首先需要将报文委托给 OS 至协议栈，但 OS 无法识别报文对应的 domain ，因此无法提供相应帮助。</p>
+<p>我们必须提供 IP 地址。将指定域名转换成 IP 的工作是由 <strong>DNS 服务器</strong> 提供。</p>
+<h5 id="DNS-层级"><a href="#DNS-层级" class="headerlink" title="DNS 层级"></a>DNS 层级</h5><ul>
+<li>根域 DNS 服务器: 不保存具体的域名信息，但它是通向所有顶级域 DNS 服务器的总入口</li>
+<li>顶级域 DNS 服务器: 代表不同的域名后缀服务器，如 cn、com、tech 等。同样不保存具体的域名信息，是通往对应后缀权威 DNS 服务器的总入口</li>
+<li>权威 DNS 服务器: 正如其名，代表着对应 Domain 映射 IP 的权威。它是存储映射关系的真实服务器。</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="E:_Project_git仓库\ImageHost\ImageHost\Browser-Chrome\v2-c19803939b273343c2799f032465296a_r.jpg" alt="img"></p>
+<blockquote>
+<p>Chrome 从 83 版本开始正式开始了 DOH 即 DNS-over-HTTPS<br>主要目的是防止原本的 DNS 请求因为是 HTTP 明文传输导致容易被中间人篡改，因此 DOH 就是批着 TLS 的 DNS 请求。</p>
+</blockquote>
+<h5 id="Hosts"><a href="#Hosts" class="headerlink" title="Hosts"></a>Hosts</h5><p>域名解析也存在本地定制化入口 Hosts。</p>
+<p>它是一个本地的关联 “数据库”，将 Domain 与 IP 地址相对应。解析优先级大于 DNS 服务。</p>
+<h5 id="DNS-解析流程"><a href="#DNS-解析流程" class="headerlink" title="DNS 解析流程"></a>DNS 解析流程</h5><p>以访问 <code>http://www.test.com</code> 为例，DNS 的解析流程如下:</p>
+<ol>
+<li><p>查看 <code>hosts</code> 是否存储目标 domain 和 IP 地址的映射关系</p>
+<ul>
+<li>若找到则直接返回给客户端</li>
+<li>若 <code>hosts</code> 不存在对应 domain，客户端建立 DNS 请求，问询<code>本地 DNS 服务器</code> Domain 对应的 IP 地址</li>
+</ul>
+</li>
+<li><p>本地 DNS 服务器收到请求后，首先查看 <code>DNS 缓存</code>能否找到 domain 对应的 IP 地址</p>
+<ul>
+<li>若找到则直接返回给客户端</li>
+<li>若 DNS 缓存中不存在，则找到自身记录的<code>根域 DNS 地址</code>并发起请求问询<code>根域服务器</code> Domain 对应的 IP 地址。</li>
+</ul>
+</li>
+<li><p>根域服务器不保存具体的数据，但是指明了我们接下来询问的目标: 对应 <code>com</code> 的顶级域名服务器地址。</p>
+</li>
+<li><p>本地 DNS 服务器收到根域的回应后，继续问询 <code>com</code> 的<code>顶级域名服务器</code>。</p>
+</li>
+<li><p><code>顶级域名服务器</code>同理会返回相对应 <code>test.com</code> 的权威服务器地址。</p>
+</li>
+<li><p>本地服务器继续问询<code>权威服务器</code>，它是域名解析结果的原出处，也是最后一次问询。</p>
+</li>
+<li><p>权威 DNS 服务器返回域名对应的 IP 地址给客户端。</p>
+</li>
+<li><p>本地 DNS 服务器缓存结果。将 IP 发给 OS。</p>
+</li>
+<li><p>OS 返回 IP 至 Chrome NetWork Service。</p>
+</li>
+</ol>
+<p>这下 NetWork Service 已经万事俱备。终于可通过 socket library 将数据委托给 OS 以进入协议栈。</p>
+<p>同时也标志着即将离开 OSI 应用层。</p>
+<h4 id="协议栈"><a href="#协议栈" class="headerlink" title="协议栈"></a>协议栈</h4><p>请求数据包在 OS 的帮助下进入协议栈。</p>
+<p>工作在应用层与传输层中间的协议栈会处理对应 H2 的 Hpack 和 Stream</p>
+<p>如果 domain 使用了 TLS &#x2F; SSL 协议，那么 OS 会从本地加密套件列表中选取加密套件，并将信息添加至数据包。</p>
+<h5 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h5><p>至此数据包来到协议簇上层，它表示工作在传输层和网络层相关的协议总称。</p>
+<p>协议簇分为上下两个部分，分别承担不同的工作且上下层关系有一定的规则。</p>
+<p>上层完成部分工作后会委托下层继续执行。</p>
+<p>在上层协议簇中最先映入眼帘的便是负责数据包收发的 TCP &#x2F; UDP</p>
+<h5 id="TCP-x2F-IP-协议簇下层"><a href="#TCP-x2F-IP-协议簇下层" class="headerlink" title="TCP &#x2F; IP 协议簇下层"></a>TCP &#x2F; IP 协议簇下层</h5><p>TCP 是面向一对一链接，可靠有状态且基于字节流的协议。</p>
+<p>在 HTTP 传输数据之前，首先需要 TCP 建立连接，TCP 连接的建立，通常称为三次握手。​</p>
+<p>在传输层执行连接、收发、断开等各阶段操作都需要委托 IP 协议将数据包封装成网络包发送给通信对象。</p>
+<p>其中最重要的是 <strong>源IP</strong> 与 <strong>目标IP</strong></p>
+<ul>
+<li><strong>源IP</strong> , 即当前客户端的 IP 地址</li>
+<li><strong>目标IP</strong> , 即 DNS 域名解析得到的接收端服务器 IP</li>
+</ul>
+<h5 id="ARP"><a href="#ARP" class="headerlink" title="ARP"></a>ARP</h5><ul>
+<li>ARP缓存</li>
+<li>MAC地址</li>
+</ul>
+<h5 id="ICMP"><a href="#ICMP" class="headerlink" title="ICMP"></a>ICMP</h5><p>ICMP 协议是 IP 的一个组成部分，必须由每个IP模块实现。</p>
+<p>主要用于在 IP 主机、路由器之间传递<strong>控制消息</strong>。</p>
+<p><strong>控制消息</strong>是指网络通不通、主机是否可达、路由是否可用等网络本身的消息。</p>
+<h2 id="页面渲染"><a href="#页面渲染" class="headerlink" title="页面渲染"></a>页面渲染</h2><p>浏览器获取到html文本之后，会对文本进行解析，最终将页面呈现在屏幕上</p>
+<p>主要是<strong>渲染进程</strong>里的<strong>渲染主线程</strong></p>
+<h3 id="解析-HTML-Parse-HTML"><a href="#解析-HTML-Parse-HTML" class="headerlink" title="解析 HTML - Parse HTML"></a>解析 HTML - Parse HTML</h3><ol>
+<li><p>预解析</p>
+<ol>
+<li>为了提高解析效率，浏览器会启动一个 <strong>预解析器(预解析线程)</strong> 率先下载和解析CSS</li>
+<li>浏览器获得HTML文本之后，会先快速浏览 需要网络加载的资源，(优先CSS和head中的资源，也有JS)</li>
+<li>然后将这些网络资源交给 <strong>网络线程</strong><ul>
+<li>这里的 <strong>网络线程</strong> 是 <strong>渲染进程</strong> 里创建线程</li>
+<li>后续这里的 <strong>网络线程</strong> 还会委托 <strong>网络进程 NetWork Service</strong> 请求资源</li>
+<li>得到资源后，会把资源返回给 <strong>预解析线程</strong> 进行解析</li>
+<li>之后会把解析后的结果交给 <strong>渲染主线程</strong> , 由 <strong>渲染主线程</strong> 生成 <strong>CSSOM 树</strong></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>渲染主线程</strong> 遇到 <strong>JavaScript&#x2F;script标签</strong> 时, 必须停止一切行为，执行 JS 代码，若需要下载，则等待预解析线程的返回</p>
+<ul>
+<li>若没下载完成，则等待下载完成</li>
+<li>若预解析线程下载完成，则直接返回给 <strong>渲染主线程</strong> 执行代码</li>
+</ul>
+<p>之所以需要停止一切行为来执行JS代码，是因为有可能存在 对在JS代码之前 已解析的DOM进行操作</p>
+</li>
+<li><p><strong>渲染主线程</strong> 会将文本形式的HTML转换成可操作的对象，并生成 DOM 树和 CSSOM 树</p>
+<ul>
+<li>DOM 树:   Document Object Modle, 控制台通过 <code>document</code> 或 <code>console.dir(document)</code> 输出查看</li>
+<li>CSSOM 树: CSS Object Modle, 控制台通过 <code>document.styleSheets</code> 输出查看</li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="E:_Project_git仓库\ImageHost\ImageHost\Browser-Chrome\image-20231211184759472.png" alt="DOM Tree"><br><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="E:_Project_git仓库\ImageHost\ImageHost\Browser-Chrome\image-20231211185250997.png" alt="CSSOM Tree"></p>
+</li>
+</ol>
+<h4 id="样式类别"><a href="#样式类别" class="headerlink" title="样式类别"></a>样式类别</h4><ul>
+<li>内部样式: <code>&lt;style&gt;</code></li>
+<li>外部样式: <code>&lt;link&gt;</code></li>
+<li>内联样式表&#x2F;行内样式表: <code>&lt;div style=&quot;&quot;&gt;</code></li>
+<li>浏览器默认样式表 (F12查看元素样式, 其中的 <strong>User agent Stylesheet</strong> )</li>
+</ul>
+<p>一个样式表(上面都是不同的样式表), 对应 <strong>CSSOM 树</strong> 中的一个 <strong>CSSStyleSheet</strong></p>
+<h3 id="样式计算-Recalculate-Style"><a href="#样式计算-Recalculate-Style" class="headerlink" title="样式计算 - Recalculate Style"></a>样式计算 - Recalculate Style</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">细粒丁</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tenyding.cn/study/%E5%89%8D%E7%AB%AF/Browser-Chrome/">https://tenyding.cn/study/前端/Browser-Chrome/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tenyding.cn" target="_blank">细粒丁の小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></div><div class="post_share"><div class="social-share" data-image="/image/bg4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="/blog/cdn/cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/%E5%B0%8F%E8%AE%B0/%E7%B2%97%E8%AE%B0%E4%B8%80%E6%AC%A1oom/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/bg9.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">粗记一次OOM!</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%A5%E9%97%A8%E5%B0%8F%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">入门小知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">何为进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%95%E4%B8%BA%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">何为线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%90%86%E8%A7%A3"><span class="toc-number">1.3.</span> <span class="toc-text">抽象理解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">浏览器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">浏览器的主要进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.2.</span> <span class="toc-text">渲染进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E4%B8%BB%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">渲染主线程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">主要工作内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%B0%83%E5%BA%A6%E6%89%A7%E8%A1%8C"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">如何调度执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B%E4%B8%8D%E9%80%82%E7%94%A8%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%9D%A5%E5%A4%84%E7%90%86%E8%BF%99%E4%BA%9B%E4%BA%8B%E6%83%85"><span class="toc-number">2.2.1.3.</span> <span class="toc-text">为什么渲染进程不适用多个线程来处理这些事情</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF"><span class="toc-number">2.2.2.</span> <span class="toc-text">事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">执行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-number">2.2.3.</span> <span class="toc-text">消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%9F%E5%88%97%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">队列类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E4%B8%BB%E8%A6%81%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.2.4.</span> <span class="toc-text">其他主要线程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9B%E7%A8%8B"><span class="toc-number">2.3.</span> <span class="toc-text">网络进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">2.3.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E8%88%AA%E7%AF%87"><span class="toc-number">2.3.2.</span> <span class="toc-text">导航篇</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90-URI"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">解析 URI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E8%AF%B7%E6%B1%82"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">构建请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%BC%BA%E7%BC%93%E5%AD%98"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">查找强缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-%E8%A7%A3%E6%9E%90"><span class="toc-number">2.3.2.4.</span> <span class="toc-text">DNS 解析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DNS-%E5%B1%82%E7%BA%A7"><span class="toc-number">2.3.2.4.1.</span> <span class="toc-text">DNS 层级</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Hosts"><span class="toc-number">2.3.2.4.2.</span> <span class="toc-text">Hosts</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DNS-%E8%A7%A3%E6%9E%90%E6%B5%81%E7%A8%8B"><span class="toc-number">2.3.2.4.3.</span> <span class="toc-text">DNS 解析流程</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E6%A0%88"><span class="toc-number">2.3.2.5.</span> <span class="toc-text">协议栈</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-number">2.3.2.5.1.</span> <span class="toc-text">传输层</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TCP-x2F-IP-%E5%8D%8F%E8%AE%AE%E7%B0%87%E4%B8%8B%E5%B1%82"><span class="toc-number">2.3.2.5.2.</span> <span class="toc-text">TCP &#x2F; IP 协议簇下层</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ARP"><span class="toc-number">2.3.2.5.3.</span> <span class="toc-text">ARP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ICMP"><span class="toc-number">2.3.2.5.4.</span> <span class="toc-text">ICMP</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93"><span class="toc-number">2.4.</span> <span class="toc-text">页面渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90-HTML-Parse-HTML"><span class="toc-number">2.4.1.</span> <span class="toc-text">解析 HTML - Parse HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E7%B1%BB%E5%88%AB"><span class="toc-number">2.4.1.1.</span> <span class="toc-text">样式类别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E8%AE%A1%E7%AE%97-Recalculate-Style"><span class="toc-number">2.4.2.</span> <span class="toc-text">样式计算 - Recalculate Style</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/image/bg4.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 细粒丁</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>粤ICP备20048893号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/blog/cdn/cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="/blog/cdn/cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/blog/cdn/cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
   if (typeof pangu === 'object') pangu.autoSpacingPage()
   else {
     getScript('/blog/cdn/cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
