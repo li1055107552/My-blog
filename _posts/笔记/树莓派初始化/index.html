@@ -1,0 +1,431 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>树莓派(aarch64 linux主机的)初始化 | 细粒丁の小窝</title><meta name="keywords" content="树莓派,笔记"><meta name="author" content="细粒丁"><meta name="copyright" content="细粒丁"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="referrer" content="never"><meta name="description" content="以树莓派为代表的 aarch64 linux主机的装机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派(aarch64 linux主机的)初始化">
+<meta property="og:url" content="https://tenyding.cn/_posts/%E7%AC%94%E8%AE%B0/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%88%9D%E5%A7%8B%E5%8C%96/index.html">
+<meta property="og:site_name" content="细粒丁の小窝">
+<meta property="og:description" content="以树莓派为代表的 aarch64 linux主机的装机">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tenyding.cn/image/bg7.jpg">
+<meta property="article:published_time" content="2022-12-07T18:17:08.000Z">
+<meta property="article:modified_time" content="2024-03-10T16:12:19.890Z">
+<meta property="article:author" content="细粒丁">
+<meta property="article:tag" content="树莓派">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tenyding.cn/image/bg7.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://tenyding.cn/_posts/%E7%AC%94%E8%AE%B0/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%88%9D%E5%A7%8B%E5%8C%96/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="code-1pSPNKiWuW"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/li1055107552/My-blog@master/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8f6becbae63b8ad7610d7ae36666ce2e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: 细粒丁","link":"链接: ","source":"来源: 细粒丁の小窝","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
+  source: {
+    jQuery: '/blog/cdn/cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: '/blog/cdn/cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: '/blog/cdn/cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: '/blog/cdn/cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: '/blog/cdn/cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '树莓派(aarch64 linux主机的)初始化',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-11 00:12:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/self/css/csdn/iconfont.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/avatar.jpg" onerror="onerror=null;src='/image/loading.webp'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 文章标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/image/bg7.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">细粒丁の小窝</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 文章标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">树莓派(aarch64 linux主机的)初始化</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-07T18:17:08.000Z" title="发表于 2022-12-08 02:17:08">2022-12-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-10T16:12:19.890Z" title="更新于 2024-03-11 00:12:19">2024-03-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="树莓派(aarch64 linux主机的)初始化"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="格卡"><a href="#格卡" class="headerlink" title="格卡"></a>格卡</h1><p>用管理员权限打开 “SDFormatter.exe”</p>
+<p>把对应的卡格式化</p>
+<p>Option:</p>
+<pre><code>FORMAT TYPE: QUICK
+FORMAT SIZE ADJUSTMENT: ON      // 对齐
+</code></pre>
+<hr>
+<h1 id="烧录"><a href="#烧录" class="headerlink" title="烧录"></a>烧录</h1><p>用管理员权限打开 “USB Image Tool.exe”</p>
+<ul>
+<li>左上角选项为: Device Mode</li>
+</ul>
+<blockquote>
+<p>  Restore： 刷写、恢复系统<br>  Rescan： （刷多张卡的时候才会用得到）<br>  Backup： 备份系统（镜像快照？集群时用）</p>
+</blockquote>
+<br>
+
+<p><strong>或直接使用 <a target="_blank" rel="noopener" href="https://downloads.raspberrypi.org/imager/imager_latest.exe">树莓派官方烧录软件</a> 进行格卡和烧录</strong></p>
+<p><code>建议自己下载镜像，官方的烧录软件要梯子 而且速度慢</code></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.raspberrypi.com/software/operating-systems/">Raspberry Pi OS 镜像</a></li>
+<li><a target="_blank" rel="noopener" href="https://cn.ubuntu.com/download/raspberry-pi">安装在树莓派上的Ubuntu</a></li>
+</ul>
+<hr>
+<h1 id="进入系统"><a href="#进入系统" class="headerlink" title="进入系统"></a>进入系统</h1><p>正常安装，设置好 语言、WiFi、时区等</p>
+<hr>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="su-认证"><a href="#su-认证" class="headerlink" title="su 认证"></a>su 认证</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo passwd</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu-ports/">https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu-ports/</a></p>
+<p>选择对应版本，复制粘贴</p>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt update</span><br><span class="line">$ sudo apt upgrade</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="安装-ssh"><a href="#安装-ssh" class="headerlink" title="安装 ssh"></a>安装 ssh</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install openssh-server</span><br></pre></td></tr></table></figure>
+
+<p>查看是否ssh服务是否启动：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ps -e | grep ssh</span><br></pre></td></tr></table></figure>
+
+<p>有sshd证明已经启动，没有则需要启动ssh服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service ssh start</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="生成公钥、私钥"><a href="#生成公钥、私钥" class="headerlink" title="生成公钥、私钥"></a>生成公钥、私钥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建.ssh目录</span></span><br><span class="line">$ <span class="built_in">mkdir</span> .ssh</span><br><span class="line">$ <span class="built_in">cd</span> .ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成公私钥</span></span><br><span class="line">$ ssh-keygen</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制一份公钥</span></span><br><span class="line">$ <span class="built_in">cp</span> id_rsa.pub authorized_keys	</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 authorized_keys 的权限</span></span><br><span class="line"><span class="comment"># $ chmod 755 ~</span></span><br><span class="line"><span class="comment"># $ chmod 700 ~/.ssh</span></span><br><span class="line"><span class="comment"># $ chmod 600 ~/.ssh/authorized_keys</span></span><br></pre></td></tr></table></figure>
+
+<p>将要免密登录的电脑的公钥 追加到 <strong>authorized_keys</strong> 里即可</p>
+<hr>
+<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install git</span><br></pre></td></tr></table></figure>
+
+<p><em><strong>注：这里往后基本上都是 root 在进行的，注意切换！</strong></em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置git用户</span></span><br><span class="line">$ adduser git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改权限</span></span><br><span class="line">$ <span class="built_in">chmod</span> 740 /etc/sudoers</span><br><span class="line">$ vim /etc/sudoers</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 root ALL=(ALL:ALL) ALL 下面添加:</span></span><br><span class="line">git ALL=(ALL:ALL) ALL</span><br><span class="line"></span><br><span class="line"><span class="comment"># 然后保存并退出，将 sudoers 文件权限改回原样：</span></span><br><span class="line">$ <span class="built_in">chmod</span> 400 /etc/sudoers</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 git 用户的密码：</span></span><br><span class="line">$ sudo passwd git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到 git 用户，然后在 ~ 目录下创建 .ssh 文件夹</span></span><br><span class="line"><span class="comment"># 同上文 配置-&gt;生成公钥、私钥</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 authorized_keys 的权限</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入到 git 用户</span></span><br><span class="line"><span class="comment"># $ su root</span></span><br><span class="line"><span class="comment"># $ cd /home/git</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 /home/git下创建新仓库 xxx.git</span></span><br><span class="line">$ git init --bare xxx.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给予 git 用户权限</span></span><br><span class="line">$ <span class="built_in">chown</span> git:git -R blog.git</span><br></pre></td></tr></table></figure>
+
+<h2 id="hooks"><a href="#hooks" class="headerlink" title="hooks"></a>hooks</h2><p>假设当前用户为：xld</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 xld 的目录下创建文件夹 xxx</span></span><br><span class="line">$ <span class="built_in">cd</span> </span><br><span class="line">$ <span class="built_in">mkdir</span> xxx </span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加可写权限</span></span><br><span class="line">$ <span class="built_in">chmod</span> 777 xxx/</span><br></pre></td></tr></table></figure>
+
+<p>返回到git用户</p>
+<p>在 <code>/home/git/xxx.git/hooks/</code> 下创建 <code>post-receive</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> xxx.git/hooks/</span><br><span class="line">$ vim post-receive</span><br></pre></td></tr></table></figure>
+<p>添加以下内容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">git --work-tree=/home/xld/xxx --git-dir=/home/git/xxx.git checkout -f</span><br></pre></td></tr></table></figure>
+<p>保存退出，添加可执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">chmod</span> +x /home/git/xxx.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
+<p>这样就可以将提交到 <code>/home/git/xxx.git</code> 仓库里的内容，同步到 <code>/home/xld/xxx</code> 的文件夹下</p>
+<hr>
+<h1 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h1><h2 id="安装-nodejs"><a href="#安装-nodejs" class="headerlink" title="安装 nodejs"></a>安装 nodejs</h2><h3 id="通过-apt-安装"><a href="#通过-apt-安装" class="headerlink" title="通过 apt 安装"></a>通过 apt 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install nodejs</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过版本管理工具安装"><a href="#通过版本管理工具安装" class="headerlink" title="通过版本管理工具安装"></a>通过版本管理工具安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 npm</span></span><br><span class="line">$ sudo apt install npm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装版本管理工具 n</span></span><br><span class="line">$ sudo npm install -g n</span><br><span class="line"></span><br><span class="line"><span class="comment"># 利用 n 安装指定版本的 node</span></span><br><span class="line">$ sudo n 16.17.0</span><br></pre></td></tr></table></figure>
+
+<p><strong>npm相关设置</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ npm config <span class="built_in">ls</span> 			<span class="comment"># 查看npm设置</span></span><br><span class="line">$ npm config get prefix		<span class="comment"># 获取npm包安装路径</span></span><br><span class="line">$ npm config <span class="built_in">set</span> prefix		<span class="comment"># 设置npm包安装路径</span></span><br><span class="line">$ npm config get cache		<span class="comment"># 获取npm缓存</span></span><br><span class="line">$ npm config <span class="built_in">set</span> cache		<span class="comment"># 设置npm缓存</span></span><br><span class="line">$ npm root -g			    <span class="comment"># 查看npm全局路径的根目录</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-nodejs-守护进程-forever"><a href="#安装-nodejs-守护进程-forever" class="headerlink" title="安装 nodejs 守护进程 forever"></a>安装 nodejs 守护进程 forever</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g forever</span><br></pre></td></tr></table></figure>
+
+<p><strong>forever相关指令</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># index.js是你要启动的js文件</span></span><br><span class="line">$ forever start index.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># 会列出forever正在运行的服务脚本</span></span><br><span class="line">$ forever list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止服务运行	</span></span><br><span class="line">$ forever stop index.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看帮助信息</span></span><br><span class="line">$ forever --<span class="built_in">help</span>		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 最简单的启动方式</span></span><br><span class="line">$ forever start ./index.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定forever日志输出文件，默认路径~/.forever</span></span><br><span class="line">$ forever start -l forever.log ./index.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># 需要注意，如果第一次启动带日志输出文件，以后启动都需要加上 -a 参数，forever默认不覆盖原文件</span></span><br><span class="line">$ forever start -l forever.log -a ../index.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定node.js应用的控制台输出文件和错误信息输出文件</span></span><br><span class="line">$ forever start -o out.log -e err.log ./index.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># 监听当前目录下文件改动，如有改动，立刻重启应用，不推荐的做法！如有日志文件，日志文件是频繁更改的</span></span><br><span class="line">$ forever start -w ./index.js</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h2 id="安装-python"><a href="#安装-python" class="headerlink" title="安装 python"></a>安装 python</h2><h3 id="apt-安装"><a href="#apt-安装" class="headerlink" title="apt 安装"></a>apt 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install python3.x</span><br></pre></td></tr></table></figure>
+
+<h3 id="源码安装"><a href="#源码安装" class="headerlink" title="源码安装"></a>源码安装</h3><p>在<a target="_blank" rel="noopener" href="https://www.python.org/downloads/source/">这里</a>选择版本，建议3.9.x</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">$ sudo apt-get install -y make build-essential libssl-dev zlib1g-dev   </span><br><span class="line">$ sudo apt-get install -y libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm </span><br><span class="line">$ sudo apt-get install -y libncurses5-dev  libncursesw5-dev xz-utils tk-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载压缩包</span></span><br><span class="line">$ wget https://www.python.org/ftp/python/3.9.16/Python-3.9.16.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">$ tar zxvf Python-3.9.16.tgz</span><br><span class="line">$ <span class="built_in">cd</span> Python-3.9.16 </span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译安装</span></span><br><span class="line">$ sudo ./configure &amp;&amp; sudo make -j4 &amp;&amp; sudo make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查</span></span><br><span class="line">$ python3 -V</span><br><span class="line">$ pip3 -V           <span class="comment"># python3.4 及 python2.7 以上版本内置了pip</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="安装-JDK（二选一）"><a href="#安装-JDK（二选一）" class="headerlink" title="安装 JDK（二选一）"></a>安装 JDK（二选一）</h2><br>
+
+<p>安装 openjdk</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建议安装 jdk17 是LTS长期支持版本</span></span><br><span class="line">$ sudo apt install openjdk-17-jdk-headless</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line">$ java -version</span><br></pre></td></tr></table></figure>
+<br>
+
+<p>安装 OracleJDK</p>
+<p>可以到<a target="_blank" rel="noopener" href="https://www.oracle.com/cn/java/technologies/downloads/">这里</a>选择版本安装，建议是jdk17</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载压缩包</span></span><br><span class="line">$ wget https://download.oracle.com/java/17/latest/jdk-17_linux-aarch64_bin.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">$ tar -zxvf jdk-17_linux-aarch64_bin.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换并新建jdk目录</span></span><br><span class="line">$ <span class="built_in">cd</span> /usr/lib</span><br><span class="line">$ sudo <span class="built_in">mkdir</span> jdk</span><br><span class="line">$ sudo <span class="built_in">mv</span> ~/download/jdk-17.0.5/ /usr/lib/jdk/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境</span></span><br><span class="line">$ sudo vim /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># set java env</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jdk/jdk-17.0.5</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$&#123;JAVA_HOME&#125;</span>/jre</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="variable">$&#123;JRE_HOME&#125;</span>/lib</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使修改生效</span></span><br><span class="line">$ <span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line">$ java -version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加软连接，部分软件会从/usr/bin下找java</span></span><br><span class="line"><span class="comment"># $ sudo update-alternatives --install /usr/bin/java  java  /usr/lib/jdk/jdk-17.0.5/bin/java 300   </span></span><br><span class="line"><span class="comment"># $ sudo update-alternatives --install /usr/bin/javac  javac  /usr/lib/jdk/jdk-17.0.5/bin/javac 300</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="安装-docker"><a href="#安装-docker" class="headerlink" title="安装 docker"></a>安装 docker</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">$ sudo apt install docker.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line">$ sudo docker run hello-world</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker-命令免-sudo-执行"><a href="#docker-命令免-sudo-执行" class="headerlink" title="docker 命令免 sudo 执行"></a>docker 命令免 sudo 执行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建docker组</span></span><br><span class="line">$ sudo groupadd docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将用户添加到docker组</span></span><br><span class="line">$ sudo gpasswd -a <span class="variable">$&#123;USER&#125;</span> docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启docker服务</span></span><br><span class="line">$ sudo systemctl restart docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># 退出当前会话 重新登录即可</span></span><br><span class="line"><span class="comment"># 或切换当前会话到新 group </span></span><br><span class="line">$ newgrp - docker</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><h2 id="利用apt安装"><a href="#利用apt安装" class="headerlink" title="利用apt安装"></a>利用apt安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># apt安装nginx</span></span><br><span class="line">$ sudo apt install nginx</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h2><ol start="0">
+<li><p>一些工具安装(也不一定需要,后面缺啥装啥)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt -y install make gcc openssl openssl-devel pcre-devel zlib zlib-devel</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载其中一个版本 <a target="_blank" rel="noopener" href="https://nginx.org/en/download.html">nginx官网下载</a></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> nginx &amp;&amp; <span class="built_in">cd</span> nginx</span><br><span class="line">$ wget https://nginx.org/download/nginx-1.22.1.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tar -zxf nginx-1.22.1.tar.gz</span><br><span class="line">$ <span class="built_in">cd</span> nginx-1.22.1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure</span><br><span class="line">$ sudo make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>启动nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/share/nginx/sbin</span><br><span class="line">$ ./nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加到全局变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="built_in">ln</span> -s /usr/share/nginx/sbin/nginx /usr/local/bin/</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="安装-代理服务器-版本"><a href="#安装-代理服务器-版本" class="headerlink" title="安装 代理服务器 版本"></a>安装 代理服务器 版本</h2><ol start="0">
+<li><p>一些工具安装(也不一定需要,后面缺啥装啥)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt -y install make gcc openssl openssl-devel pcre-devel zlib zlib-devel</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载其中一个版本 <a target="_blank" rel="noopener" href="https://nginx.org/en/download.html">nginx官网下载</a></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> nginx &amp;&amp; <span class="built_in">cd</span> nginx</span><br><span class="line">$ wget https://nginx.org/download/nginx-1.22.1.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载正向代理模块的包 <a target="_blank" rel="noopener" href="https://github.com/chobits/ngx_http_proxy_connect_module/releases">ngx_http_proxy_connect_module</a></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/chobits/ngx_http_proxy_connect_module/archive/refs/tags/v0.0.5.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tar -zxf nginx-1.22.1.tar.gz</span><br><span class="line">$ tar -zxf ngx_http_proxy_connect_module-0.0.5</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看版本&amp;导入模块</p>
+<p>因为这里 nginx 版本为1.22.1, 因此对应的版本为<code>proxy_connect_rewrite_102101.patch</code> <a target="_blank" rel="noopener" href="https://github.com/chobits/ngx_http_proxy_connect_module#select-patch">其他版本查看</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> nginx-1.22.1</span><br><span class="line">$ patch -p1 &lt; ../ngx_http_proxy_connect_module-0.0.5/patch/proxy_connect_rewrite_102101.patch</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ./configure  --prefix=/usr/share/nginx --conf-path=/etc/nginx/nginx.conf --http-log-path=/var/log/nginx/access.log --error-log-path=/var/log/nginx/error.log --add-module=/home/ubuntu/dir/nginx/ngx_http_proxy_connect_module-0.0.5</span><br><span class="line"></span><br><span class="line">--prefix: 安装路径</span><br><span class="line">--conf-path: 配置路径</span><br><span class="line">--http-log-path: http的<span class="built_in">log</span>路径</span><br><span class="line">--error-log-path: 错误信息的<span class="built_in">log</span>路径</span><br><span class="line">--add-module:添加模块，这里是正向代理模块</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /usr/share/nginx/sbin</span><br><span class="line">$ ./nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加到全局变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo <span class="built_in">ln</span> -s /usr/share/nginx/sbin/nginx /usr/local/bin/</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装mysql</span></span><br><span class="line">$ apt install mysql-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看服务状态</span></span><br><span class="line">$ service mysql status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">$ service mysql start</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h1><hr>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Redis</span></span><br><span class="line">$ apt install redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改配置</span></span><br><span class="line">$ vim /etc/redis/redis.conf</span><br><span class="line"><span class="comment"># 这两个地方开启/改为</span></span><br><span class="line"><span class="built_in">bind</span> 127.0.0.1</span><br><span class="line">daemonize <span class="built_in">yes</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">$ redis-server /etc/redis/redis.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 未启动服务则会提示</span></span><br><span class="line"><span class="comment"># Could not connect to Redis at 127.0.0.1:6379: Connection refused</span></span><br><span class="line"><span class="comment"># not connected&gt;</span></span><br><span class="line"><span class="comment"># exit 退出即可</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入Redis</span></span><br><span class="line">$ redis-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一些命令</span></span><br><span class="line">$ PING</span><br><span class="line">$ <span class="built_in">set</span> [key] value</span><br><span class="line">$ get [key]</span><br><span class="line">$ del [key]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><br><br><br></p>
+<p>待续未完……</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">细粒丁</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tenyding.cn/_posts/%E7%AC%94%E8%AE%B0/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%88%9D%E5%A7%8B%E5%8C%96/">https://tenyding.cn/_posts/笔记/树莓派初始化/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tenyding.cn" target="_blank">细粒丁の小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a><a class="post-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a></div><div class="post_share"><div class="social-share" data-image="/image/bg7.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="/blog/cdn/cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/_posts/%E6%8A%80%E6%9C%AF/%E8%83%BD%E4%B8%80%E9%94%AE%E5%A4%87%E4%BB%BD%E7%9A%84%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/bg3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">能一键备份的快捷方式</div></div></a></div><div class="next-post pull-right"><a href="/_posts/study/vue/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/bg11.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Vue</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/_posts/study/树莓派/" title="树莓派"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/bg10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-22</div><div class="title">树莓派</div></div></a></div><div><a href="/_posts/笔记/常用命令语句/" title="常用命令语句"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/bg11.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-26</div><div class="title">常用命令语句</div></div></a></div><div><a href="/_posts/技术/C语言实现TCPIP连接/" title="C语言实现TCP/IP连接"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/bg10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-13</div><div class="title">C语言实现TCP/IP连接</div></div></a></div><div><a href="/_posts/技术/JS闭包异步问题/" title="JS闭包异步问题"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/image/bg6.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-13</div><div class="title">JS闭包异步问题</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%BC%E5%8D%A1"><span class="toc-number">1.</span> <span class="toc-text">格卡</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%83%A7%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">烧录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text">进入系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#su-%E8%AE%A4%E8%AF%81"><span class="toc-number">4.1.</span> <span class="toc-text">su 认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%A2%E6%BA%90"><span class="toc-number">4.2.</span> <span class="toc-text">换源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0"><span class="toc-number">4.2.1.</span> <span class="toc-text">更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-ssh"><span class="toc-number">4.3.</span> <span class="toc-text">安装 ssh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%85%AC%E9%92%A5%E3%80%81%E7%A7%81%E9%92%A5"><span class="toc-number">4.4.</span> <span class="toc-text">生成公钥、私钥</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-number">5.</span> <span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85git"><span class="toc-number">5.1.</span> <span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-number">5.2.</span> <span class="toc-text">创建仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hooks"><span class="toc-number">5.3.</span> <span class="toc-text">hooks</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Node"><span class="toc-number">6.</span> <span class="toc-text">Node</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-nodejs"><span class="toc-number">6.1.</span> <span class="toc-text">安装 nodejs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-apt-%E5%AE%89%E8%A3%85"><span class="toc-number">6.1.1.</span> <span class="toc-text">通过 apt 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85"><span class="toc-number">6.1.2.</span> <span class="toc-text">通过版本管理工具安装</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-nodejs-%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B-forever"><span class="toc-number">6.2.</span> <span class="toc-text">安装 nodejs 守护进程 forever</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Python"><span class="toc-number">7.</span> <span class="toc-text">Python</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-python"><span class="toc-number">7.1.</span> <span class="toc-text">安装 python</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-%E5%AE%89%E8%A3%85"><span class="toc-number">7.1.1.</span> <span class="toc-text">apt 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85"><span class="toc-number">7.1.2.</span> <span class="toc-text">源码安装</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java"><span class="toc-number">8.</span> <span class="toc-text">Java</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-JDK%EF%BC%88%E4%BA%8C%E9%80%89%E4%B8%80%EF%BC%89"><span class="toc-number">8.1.</span> <span class="toc-text">安装 JDK（二选一）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker"><span class="toc-number">9.</span> <span class="toc-text">Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-docker"><span class="toc-number">9.1.</span> <span class="toc-text">安装 docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E5%91%BD%E4%BB%A4%E5%85%8D-sudo-%E6%89%A7%E8%A1%8C"><span class="toc-number">9.2.</span> <span class="toc-text">docker 命令免 sudo 执行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Nginx"><span class="toc-number">10.</span> <span class="toc-text">Nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8apt%E5%AE%89%E8%A3%85"><span class="toc-number">10.1.</span> <span class="toc-text">利用apt安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85"><span class="toc-number">10.2.</span> <span class="toc-text">编译安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8-%E7%89%88%E6%9C%AC"><span class="toc-number">10.3.</span> <span class="toc-text">安装 代理服务器 版本</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL"><span class="toc-number">11.</span> <span class="toc-text">MySQL</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MongoDB"><span class="toc-number">12.</span> <span class="toc-text">MongoDB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis"><span class="toc-number">13.</span> <span class="toc-text">Redis</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/image/bg7.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 细粒丁</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>粤ICP备20048893号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/blog/cdn/cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="/blog/cdn/cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/blog/cdn/cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('/blog/cdn/cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('/blog/cdn/cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://tenyding.cn/proxy/twikoo',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://tenyding.cn/proxy/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.staticfile.org/twikoo/1.6.7/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="click-heart" src="/blog/cdn/cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="/blog/cdn/cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="/blog/cdn/cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="/blog/cdn/cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="/blog/cdn/cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://tenyding.cn/proxy/github-calendar?li1055107552";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="li1055107552";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = ' <div class="recent-post-item" style="width:100%;height:auto;padding:10px;"> <div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"> <path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"> <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"> </animateTransform> </path> </svg> </div> <div id="github_container"></div> </div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
