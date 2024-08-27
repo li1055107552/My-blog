@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://tenyding.cn/_posts/study/linux&ubuntu/</loc>
+    <loc>https://tenyding.cn/_posts/study/linux%26ubuntu/</loc>
     
     <lastmod>2024-06-06</lastmod>
     
@@ -461,14 +461,14 @@
 
   
   <url>
-    <loc>https://tenyding.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <loc>https://tenyding.cn/tags/linux/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://tenyding.cn/tags/linux/</loc>
+    <loc>https://tenyding.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -489,14 +489,14 @@
   </url>
   
   <url>
-    <loc>https://tenyding.cn/tags/git/</loc>
+    <loc>https://tenyding.cn/tags/%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://tenyding.cn/tags/%E7%B3%BB%E7%BB%9F/</loc>
+    <loc>https://tenyding.cn/tags/git/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -587,7 +587,28 @@
   </url>
   
   <url>
+    <loc>https://tenyding.cn/tags/Mongodb/</loc>
+    <lastmod>2024-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://tenyding.cn/tags/bash/</loc>
+    <lastmod>2024-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://tenyding.cn/tags/Linux/</loc>
+    <lastmod>2024-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://tenyding.cn/tags/openssl/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -609,27 +630,6 @@
   
   <url>
     <loc>https://tenyding.cn/tags/nginx/</loc>
-    <lastmod>2024-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://tenyding.cn/tags/openssl/</loc>
-    <lastmod>2024-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://tenyding.cn/tags/Mongodb/</loc>
-    <lastmod>2024-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://tenyding.cn/tags/bash/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -664,7 +664,7 @@
   </url>
   
   <url>
-    <loc>https://tenyding.cn/tags/Kafka/</loc>
+    <loc>https://tenyding.cn/tags/Spark/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -678,14 +678,7 @@
   </url>
   
   <url>
-    <loc>https://tenyding.cn/tags/Spark/</loc>
-    <lastmod>2024-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://tenyding.cn/tags/Sqoop/</loc>
+    <loc>https://tenyding.cn/tags/Kafka/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -693,6 +686,13 @@
   
   <url>
     <loc>https://tenyding.cn/tags/Storm/</loc>
+    <lastmod>2024-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://tenyding.cn/tags/Sqoop/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -713,14 +713,14 @@
   </url>
   
   <url>
-    <loc>https://tenyding.cn/tags/%E7%AE%97%E6%B3%95/</loc>
+    <loc>https://tenyding.cn/tags/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://tenyding.cn/tags/%E5%89%8D%E7%AB%AF/</loc>
+    <loc>https://tenyding.cn/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -729,14 +729,14 @@
 
   
   <url>
-    <loc>https://tenyding.cn/categories/%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://tenyding.cn/categories/%E5%B0%8F%E8%AE%B0/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://tenyding.cn/categories/%E5%B0%8F%E8%AE%B0/</loc>
+    <loc>https://tenyding.cn/categories/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -757,13 +757,6 @@
   </url>
   
   <url>
-    <loc>https://tenyding.cn/categories/%E6%8A%80%E6%9C%AF/%E5%B0%8F%E7%8E%A9%E6%84%8F/</loc>
-    <lastmod>2024-08-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://tenyding.cn/categories/%E7%B2%BE%E9%80%9A%E5%90%84%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -771,14 +764,21 @@
   </url>
   
   <url>
-    <loc>https://tenyding.cn/categories/%E7%AE%97%E6%B3%95/</loc>
+    <loc>https://tenyding.cn/categories/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://tenyding.cn/categories/%E5%89%8D%E7%AB%AF/</loc>
+    <loc>https://tenyding.cn/categories/%E6%8A%80%E6%9C%AF/%E5%B0%8F%E7%8E%A9%E6%84%8F/</loc>
+    <lastmod>2024-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://tenyding.cn/categories/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2024-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
