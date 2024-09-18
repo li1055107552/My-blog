@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://tenyding.cn/_posts%2F%E6%8A%80%E6%9C%AF%2FTCP%E6%89%93%E6%B4%9E%EF%BC%8C%E5%AE%9E%E7%8E%B0P2P%EF%BC%88%E9%99%84Node%E6%BA%90%E7%A0%81%EF%BC%89%2F</loc>
+    <lastmod>2024-09-18T09:51:38.621Z</lastmod>
+  </url>  <url>
     <loc>https://tenyding.cn/_posts%2Fstudy%2Flinux%26ubuntu%2F</loc>
     <lastmod>2024-08-31T05:47:35.883Z</lastmod>
   </url>  <url>
@@ -30,9 +33,6 @@
   </url>  <url>
     <loc>https://tenyding.cn/_posts%2F%E6%8A%80%E6%9C%AF%2FNAT%E6%89%93%E6%B4%9E%2F</loc>
     <lastmod>2024-03-10T17:01:02.230Z</lastmod>
-  </url>  <url>
-    <loc>https://tenyding.cn/_posts%2F%E6%8A%80%E6%9C%AF%2FTCP%E6%89%93%E6%B4%9E%EF%BC%8C%E5%AE%9E%E7%8E%B0P2P%EF%BC%88%E9%99%84Node%E6%BA%90%E7%A0%81%EF%BC%89%2F</loc>
-    <lastmod>2024-03-10T17:01:01.090Z</lastmod>
   </url>  <url>
     <loc>https://tenyding.cn/_posts%2F%E6%8A%80%E6%9C%AF%2FUbuntu20-04%E4%B8%8B%EF%BC%8C%E6%90%AD%E5%BB%BAhexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%2F</loc>
     <lastmod>2024-03-10T17:00:59.412Z</lastmod>
