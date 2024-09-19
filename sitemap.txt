@@ -1,3 +1,4 @@
+https://tenyding.cn/link/index.html
 https://tenyding.cn/_posts/%E6%8A%80%E6%9C%AF/TCP%E6%89%93%E6%B4%9E%EF%BC%8C%E5%AE%9E%E7%8E%B0P2P%EF%BC%88%E9%99%84Node%E6%BA%90%E7%A0%81%EF%BC%89/
 https://tenyding.cn/tags/index.html
 https://tenyding.cn/categories/index.html
@@ -43,7 +44,6 @@ https://tenyding.cn/_posts/study/%E5%89%8D%E7%AB%AF/%E9%A2%84%E7%BC%96%E8%AF%91/
 https://tenyding.cn/self/css/csdn/iconfont.json
 https://tenyding.cn/self/css/csdn/demo_index.html
 https://tenyding.cn/_posts/about/
-https://tenyding.cn/link/index.html
 https://tenyding.cn/about/index.html
 https://tenyding.cn/image/icon/csdn/demo_index.html
 https://tenyding.cn/image/icon/csdn/iconfont.json
