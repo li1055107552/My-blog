@@ -2295,7 +2295,7 @@ blockquote footer cite:before {
   flex: 1 auto;
   margin: 0 auto;
   padding: 2rem 15px;
-  max-width: 1200px;
+  max-width: 1500px;
   width: 100%;
 }
 @media screen and (max-width: 900px) {
@@ -2339,6 +2339,7 @@ blockquote footer cite:before {
 }
 .layout > div:first-child {
   width: 75%;
+  flex: 1;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -2682,6 +2683,7 @@ blockquote footer cite:before {
 }
 #aside-content {
   width: 25%;
+  max-width: 300px;
 }
 @media screen and (min-width: 900px) {
   #aside-content {
